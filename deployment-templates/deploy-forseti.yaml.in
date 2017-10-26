@@ -54,6 +54,7 @@ resources:
     image-family: ubuntu-1604-lts
     instance-type: n1-standard-2
     zone: $(ref.cloudsql-instance.region)-c
+    network: {NETWORK_NAME}
 
     service-account: $(ref.forseti-gcp-reader.email)
     service-account-scopes:

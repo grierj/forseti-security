@@ -36,6 +36,8 @@ def run():
     group = parser.add_argument_group(title='regions')
     group.add_argument('--gcs-location',
                        help='The GCS bucket location')
+    group.add_argument('--network-name',
+                       help='Which network to install your instance in')
     group.add_argument('--cloudsql-region',
                        help='The Cloud SQL region')
 
