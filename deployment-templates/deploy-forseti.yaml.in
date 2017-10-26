@@ -55,6 +55,7 @@ resources:
     instance-type: n1-standard-2
     zone: $(ref.cloudsql-instance.region)-c
     network: {NETWORK_NAME}
+    subnetwork: {SUBNETWORK_NAME}
 
     service-account: $(ref.forseti-gcp-reader.email)
     service-account-scopes:

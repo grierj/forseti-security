@@ -103,6 +103,12 @@ python build_protos.py --clean
                     'projects/{}/global/networks/{}'.format(
                     context.env['project'],
                     context.properties['network'])),
+                'network': (
+                    'https://www.googleapis.com/compute/v1/'
+                    'projects/{}/regions/{}/subnetworks/{}'.format(
+                    context.env['project'],
+                    '$(ref.cloudsql-instance.region)',
+                    context.properties['subnetwork'])),
                 'accessConfigs': [{
                     'name': 'External NAT',
                     'type': 'ONE_TO_ONE_NAT'

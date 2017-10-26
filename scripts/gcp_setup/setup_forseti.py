@@ -33,8 +33,11 @@ def run():
                         help='Bypass IAM check for user running script')
     parser.add_argument('--branch',
                         help='Which Forseti branch to deploy')
-    parser.add_argument('--network-name',
+    group = parser.add_argument_group(title='custom network')
+    group.add_argument('--network-name',
                        help='Which network to install your instance in')
+    group.add_argument('--subnetwork-name',
+                       help='Which subnetwork to install your instance in')
     group = parser.add_argument_group(title='regions')
     group.add_argument('--gcs-location',
                        help='The GCS bucket location')

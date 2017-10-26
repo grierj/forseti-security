@@ -128,6 +128,7 @@ class ForsetiGcpSetup(object):
         self.bucket_name = None
         self.bucket_location = kwargs.get('gcs_location') or 'us-central1'
         self.network_name = kwargs.get('network_name') or 'default'
+        self.subnetwork_name = kwargs.get('subnetwork_name') or 'default'
         self.cloudsql_instance = '{}-{}'.format(
             DEFAULT_CLOUDSQL_INSTANCE_NAME,
             self.timestamp)
@@ -621,6 +622,7 @@ class ForsetiGcpSetup(object):
             'SCANNER_BUCKET': self.bucket_name[len('gs://'):],
             'BUCKET_LOCATION': self.bucket_location,
             'NETWORK_NAME': self.network_name,
+            'SUBNETWORK_NAME': self.subnetwork_name,
             'SERVICE_ACCT_GCP_READER': self.gcp_service_account,
             'SERVICE_ACCT_GSUITE_READER': self.gsuite_service_account,
             'BRANCH_OR_RELEASE': 'branch-name: "{}"'.format(self.branch),
