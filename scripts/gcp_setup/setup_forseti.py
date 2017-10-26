@@ -31,6 +31,9 @@ def run():
     parser.add_argument('--no-iam-check',
                         action='store_true',
                         help='Bypass IAM check for user running script')
+    parser.add_argument('--no-external-ip',
+                        action='store_true',
+                        help='The forseti VM should not use an external IP')
     parser.add_argument('--branch',
                         help='Which Forseti branch to deploy')
     group = parser.add_argument_group(title='custom network')

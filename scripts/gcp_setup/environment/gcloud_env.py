@@ -112,6 +112,7 @@ class ForsetiGcpSetup(object):
         self.timeonly = self.timestamp[8:]
         self.force_no_cloudshell = kwargs.get('no_cloudshell')
         self.skip_iam_check = kwargs.get('no_iam_check')
+        self.no_external_ip = kwargs.get('no_external_ip')
         self.branch = kwargs.get('branch') or 'master'
 
         self.is_devshell = False
@@ -156,7 +157,8 @@ class ForsetiGcpSetup(object):
         self.check_billing_enabled()
         self.has_permissions()
 
-        self.enable_apis()
+        #TODO: re-enable
+        #self.enable_apis()
 
         # Generate names and config.
         self._print_banner('Generate configs')
@@ -616,6 +618,10 @@ class ForsetiGcpSetup(object):
                 'deployment-templates',
                 'deploy-forseti-{}.yaml'.format(self.timestamp)))
 
+        access_config = [{ 'name': 'External NAT', 'type': 'ONE_TO_ONE_NAT' }]
+        if no_external_ip:
+            access_config = []
+
         deploy_values = {
             'CLOUDSQL_REGION': self.cloudsql_region,
             'CLOUDSQL_INSTANCE_NAME': self.cloudsql_instance,
@@ -623,6 +629,7 @@ class ForsetiGcpSetup(object):
             'BUCKET_LOCATION': self.bucket_location,
             'NETWORK_NAME': self.network_name,
             'SUBNETWORK_NAME': self.subnetwork_name,
+            'ACCESS_CONFIG': access_config,
             'SERVICE_ACCT_GCP_READER': self.gcp_service_account,
             'SERVICE_ACCT_GSUITE_READER': self.gsuite_service_account,
             'BRANCH_OR_RELEASE': 'branch-name: "{}"'.format(self.branch),

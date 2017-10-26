@@ -109,10 +109,7 @@ python build_protos.py --clean
                     context.env['project'],
                     '$(ref.cloudsql-instance.region)',
                     context.properties['subnetwork'])),
-                'accessConfigs': [{
-                    'name': 'External NAT',
-                    'type': 'ONE_TO_ONE_NAT'
-                }]
+                'accessConfigs': context.properties['access_config'],
             }],
             'serviceAccounts': [{
                 'email': context.properties['service-account'],
